@@ -8,7 +8,8 @@ const todoList = [
 
 function App() {
   const todoListItems = todoList.map(function (item) {
-    return <li>{item.title}</li>;
+    // return <li>{item.title}</li>;
+    return <li key={item.id}>{item.title}</li>;
   });
   return (
     <div>
