@@ -7,17 +7,24 @@ const todoList = [
 ];
 
 function App() {
-  const todoListItems = todoList.map(function (item) {
-    // return <li>{item.title}</li>;
-    return <li key={item.id}>{item.title}</li>;
-  });
   return (
     <div>
       <h1>Todo List</h1>
 
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" />
-      <ul>{todoListItems}</ul>
+
+      <hr />
+
+      <ul>
+        {todoList.map(function (item) {
+          return (
+            <li key={item.objectID}>
+              <span>{item.title}</span>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
