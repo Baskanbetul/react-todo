@@ -15,6 +15,8 @@ function App() {
     <div>
       <h1>Todo List</h1>
 
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" />
       <ul>{todoListItems}</ul>
     </div>
   );
