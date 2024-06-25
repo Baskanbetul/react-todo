@@ -1,5 +1,6 @@
 import React from "react";
 import TodoList from "./TodoList";
+import AddTodoForm from "./AddTodoForm";
 
 // const todoList = [
 //   { title: "Go shopping", id: "1" },
@@ -21,20 +22,20 @@ import TodoList from "./TodoList";
 //   );
 // }
 
-function Search() {
-  return (
-    <div>
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
-    </div>
-  );
-}
+// function Search() {
+//   return (
+//     <div>
+//       <label htmlFor="search">Search: </label>
+//       <input id="search" type="text" />
+//     </div>
+//   );
+// }
 
 function App() {
   return (
     <div>
       <h1>Todo List</h1>
-      <Search />
+      <AddTodoForm />
       <hr />
       <TodoList />
     </div>
