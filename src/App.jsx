@@ -1,6 +1,7 @@
 import React from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
+import "./App.css";
 
 // const todoList = [
 //   { title: "Go shopping", id: "1" },
