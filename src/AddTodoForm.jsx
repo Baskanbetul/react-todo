@@ -4,7 +4,9 @@ function AddTodoForm() {
   return (
     <div>
       <form>
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title" style={{ margin: "5px" }}>
+          Title
+        </label>
         <input id="todoTitle" type="text"></input>
         <button>Add</button>
       </form>
