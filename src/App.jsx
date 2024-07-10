@@ -1,6 +1,7 @@
 import React from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
+import TodoListItem from "./TodoListItem";
 import "./App.css";
 
 // const todoList = [
@@ -39,6 +40,7 @@ function App() {
       <AddTodoForm />
       <hr />
       <TodoList />
+      <TodoListItem />
     </div>
   );
 }
