@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
-function AddTodoForm(props) {
+function AddTodoForm({ onAddTodo }) {
+  const [todoTitle, setTodoTitle] = useState();
+  function handleTitleChange(event) {
+    const newTodoTitle = event.target.value;
+    setTodoTitle(newTodoTitle);
+  }
   function handleAddTodo(event) {
     event.preventDefault();
     const form = event.target;
     const input = form.querySelector("input");
-    const todoTitle = input.value;
+    // const todoTitle = input.value; // line 6 and this line do same job
     console.log(todoTitle);
     console.log("Form Submitted");
-    props.onAddTodo(todoTitle);
-    form.reset();
+    onAddTodo({
+      title: todoTitle,
+      id: Date.now(),
+    });
+    setTodoTitle(""); // form.reset(); same work
   }
   return (
     <div>
@@ -22,6 +30,8 @@ function AddTodoForm(props) {
           placeholder="todo"
           id="todoTitle"
           type="text"
+          value={todoTitle}
+          onChange={handleTitleChange}
           // Next, retrieve the value of the title element from the event target and store it in a variable named todoTitle buradan devam et
         ></input>
         <button type="submit">Submit</button>

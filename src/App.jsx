@@ -34,14 +34,18 @@ import "./App.css";
 // }
 
 function App() {
-  const [newTodo, setNewTodo] = useState(); //state variable
+  // const [newTodo, setNewTodo] = useState(); //state variable
+  const [todoList, setTodoList] = useState([]);
+  function addTodo(newTodo) {
+    setTodoList([...todoList, newTodo]);
+  }
   return (
     <div>
       <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={setNewTodo} />
-      <p> {newTodo} </p>
+      <AddTodoForm onAddTodo={addTodo} />
+      {/* <p> {newTodo} </p> */}
       <hr />
-      <TodoList />
+      <TodoList todoList={todoList} />
       <TodoListItem />
     </div>
   );
