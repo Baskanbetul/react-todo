@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import TodoListItem from "./TodoListItem";
 import "./App.css";
+import { jsx } from "react/jsx-runtime";
+// import { useEffect } from "react";
 
 // const todoList = [
 //   { title: "Go shopping", id: "1" },
@@ -32,22 +34,49 @@ import "./App.css";
 //     </div>
 //   );
 // }
+function getTodoListDefaultState() {
+  const savedTodoListString = window.localStorage.getItem("savedTodoList");
+  if (savedTodoListString) {
+    return JSON.parse(savedTodoListString);
+  } else {
+    return [];
+  }
+}
 
+function useSemiPersistentState() {
+  const [todoList, setTodoList] = useState(getTodoListDefaultState());
+
+  useEffect(() => {
+    console.log("todoList has changed");
+    console.log(todoList);
+    window.localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [todoList]); //Define a useEffect React ve todoListi oraya yazdik o dependency oluyor
+
+  return [todoList, setTodoList];
+}
 function App() {
   // const [newTodo, setNewTodo] = useState(); //state variable
-  const [todoList, setTodoList] = useState([]);
+  // const [todoList, setTodoList] = useState(getTodoListDefaultState());
+
+  // useEffect(() => {
+  //   console.log("todoList has changed");
+  //   console.log(todoList);
+  //   window.localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  // }, [todoList]); //Define a useEffect React ve todoListi oraya yazdik o dependency oluyor
+  const [todoList, setTodoList] = useSemiPersistentState();
+
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
   }
   return (
-    <div>
+    <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       {/* <p> {newTodo} </p> */}
       <hr />
       <TodoList todoList={todoList} />
       <TodoListItem />
-    </div>
+    </>
   );
 }
 
