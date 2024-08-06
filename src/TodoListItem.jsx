@@ -4,6 +4,7 @@ function TodoListItem({ title }) {
   return (
     <li>
       <span>{title}</span>
+      <button onClick={() => onRemoveTodo(todo.id)}>Remove</button>
     </li>
   );
 }

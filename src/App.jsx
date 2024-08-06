@@ -68,13 +68,23 @@ function App() {
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
   }
+
+  // function removeTodo(id) {
+  //   const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+  //   setTodoList(updatedTodoList, []);
+  // }
+  const removeTodo = (id) => {
+    const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(updatedTodoList);
+  };
+
   return (
     <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       {/* <p> {newTodo} </p> */}
       <hr />
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       <TodoListItem />
     </>
   );
