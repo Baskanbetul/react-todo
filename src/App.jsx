@@ -43,36 +43,34 @@ function getTodoListDefaultState() {
   }
 }
 
-function useSemiPersistentState() {
-  const [todoList, setTodoList] = useState(getTodoListDefaultState());
-
+function App() {
+  const [todoList, setTodoList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({ data: { todoList: getTodoListDefaultState() } });
+      }, 2000);
+    }).then((result) => {
+      console.log(result);
+      setLoading(false);
+      setTodoList(result.data.todoList);
+    });
+  }, []);
   useEffect(() => {
     console.log("todoList has changed");
     console.log(todoList);
-    window.localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+    if (loading) {
+      return;
+    } else {
+      window.localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+    }
   }, [todoList]); //Define a useEffect React ve todoListi oraya yazdik o dependency oluyor
-
-  return [todoList, setTodoList];
-}
-function App() {
-  // const [newTodo, setNewTodo] = useState(); //state variable
-  // const [todoList, setTodoList] = useState(getTodoListDefaultState());
-
-  // useEffect(() => {
-  //   console.log("todoList has changed");
-  //   console.log(todoList);
-  //   window.localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-  // }, [todoList]); //Define a useEffect React ve todoListi oraya yazdik o dependency oluyor
-  const [todoList, setTodoList] = useSemiPersistentState();
 
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
   }
 
-  // function removeTodo(id) {
-  //   const updatedTodoList = todoList.filter((todo) => todo.id !== id);
-  //   setTodoList(updatedTodoList, []);
-  // }
   const removeTodo = (id) => {
     const updatedTodoList = todoList.filter((todo) => todo.id !== id);
     setTodoList(updatedTodoList);
@@ -83,9 +81,14 @@ function App() {
     <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
-      {/* <p> {newTodo} </p> */}
       <hr />
-      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      {loading ? (
+        <span class="loader"></span>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
+      {/* {loading && <span class="loader"></span>}
+      {!loading && <TodoList todoList={todoList} onRemoveTodo={removeTodo} />} */}
     </>
   );
 }
