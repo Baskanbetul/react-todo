@@ -46,6 +46,25 @@ function getTodoListDefaultState() {
 function useSemiPersistentState() {
   const [todoList, setTodoList] = useState(getTodoListDefaultState());
 
+  async function fetchData() {
+    try {
+      const response = await fetch("https://api.example.com/todos");
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status}`);
+      }
+      const data = await response.json();
+      setTodoList(data);
+    } catch (error) {
+      console.error("Error fetching data:", error.message); // Log the error's message
+    } finally {
+      setIsLoading(false); // Set loading to false after fetch is complete
+    }
+  }
+
+  useEffect(() => {
+    fetchData(); // Call fetchData inside useEffect
+  }, []); // Empty dependency array to run only once
+
   useEffect(() => {
     console.log("todoList has changed");
     console.log(todoList);
