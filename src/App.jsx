@@ -5,36 +5,7 @@ import TodoListItem from "./TodoListItem";
 import "./App.css";
 import { jsx } from "react/jsx-runtime";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { useEffect } from "react";
 
-// const todoList = [
-//   { title: "Go shopping", id: "1" },
-//   { title: "Finish cleaning", id: "2" },
-//   { title: "Go to gym", id: "3" },
-// ];
-
-// function TodoList() {
-//   return (
-//     <ul>
-//       {todoList.map(function (item) {
-//         return (
-//           <li key={item.objectID}>
-//             <span>{item.title}</span>
-//           </li>
-//         );
-//       })}
-//     </ul>
-//   );
-// }
-
-// function Search() {
-//   return (
-//     <div>
-//       <label htmlFor="search">Search: </label>
-//       <input id="search" type="text" />
-//     </div>
-//   );
-// }
 function getTodoListDefaultState() {
   const savedTodoListString = window.localStorage.getItem("savedTodoList");
   if (savedTodoListString) {
@@ -98,6 +69,14 @@ function App() {
               <AddTodoForm onAddTodo={addTodo} />
               <hr />
               <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+            </>
+          }
+        />
+        <Route
+          path="/new"
+          element={
+            <>
+              <h1>New Todo List</h1>
             </>
           }
         />
