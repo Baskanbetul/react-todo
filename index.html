@@ -1,12 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>Do List 📝</title>
+    <style>
+      /* Base styles for all devices */
+      nav {
+        background-color: #07592c;
+        padding: 20px;
+      }
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      nav ul li {
+        display: inline;
+        margin-right: 30px;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-family: "Roboto", sans-serif;
+        padding: 5px 10px;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #036805;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 2px solid #07592c;
+        border-radius: 4px;
+        font-family: "Roboto", sans-serif;
+      }
+
+      button {
+        background-color: #eee97c;
+        color: rgb(33, 101, 6);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+      }
+
+      button:hover {
+        background-color: #b7e8b8;
+      }
+
+      /* Media Queries */
+      /* Mobile devices */
+      @media (max-width: 600px) {
+        nav ul li {
+          display: block;
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-size: 20px;
+        }
+        button {
+          width: 100%;
+        }
+      }
+
+      /* Tablet devices */
+      @media (min-width: 601px) and (max-width: 1024px) {
+        nav ul li {
+          display: inline-block;
+          margin-right: 20px;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-size: 22px;
+        }
+      }
+
+      /* Desktop devices */
+      @media (min-width: 1025px) {
+        nav ul li {
+          display: inline;
+          margin-right: 30px;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-size: 24px;
+        }
+      }
+    </style>
   </head>
   <body>
+    <nav>
+      <ul>
+        <li><a href="#home">Home 🌸</a></li>
+        <li><a href="#daily-list">Daily List</a></li>
+        <li><a href="#weekly-list">Weekly List</a></li>
+      </ul>
+    </nav>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
