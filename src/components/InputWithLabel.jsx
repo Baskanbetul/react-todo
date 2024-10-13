@@ -1,27 +1,7 @@
 // import React, { useRef, useEffect } from "react";
 
-// function InputWithLabel(props) {
-//   return (
-//     <>
-//       <label htmlFor="title" style={{ margin: "5px" }}>
-//         {props.children}
-//       </label>
-//       <input
-//         name="title"
-//         placeholder="todo"
-//         id="todoTitle"
-//         type="text"
-//         value={props.todoTitle}
-//         onChange={props.handleTitleChange}
-//         autoFocus=""
-//       ></input>
-//     </>
-//   );
-// }
-
-// export default InputWithLabel;
-
 import React, { useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 
 function InputWithLabel({ id, value, onInputChange, placeholder, children }) {
   const inputRef = useRef();
@@ -45,5 +25,13 @@ function InputWithLabel({ id, value, onInputChange, placeholder, children }) {
     </div>
   );
 }
+
+InputWithLabel.propTypes = {
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default InputWithLabel;
