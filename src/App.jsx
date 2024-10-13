@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import TodoList from "./TodoList";
-import AddTodoForm from "./AddTodoForm";
-import TodoListItem from "./TodoListItem";
+// import TodoList from "./TodoList";
+import TodoList from "./components/TodoList";
+
+// import AddTodoForm from "./AddTodoForm";
+import AddTodoForm from "./components/AddTodoForm";
+
+import TodoListItem from "./components/TodoListItem";
 import "./App.css";
 import { jsx } from "react/jsx-runtime";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
