@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import TodoList from "./TodoList";
 import TodoList from "./components/TodoList";
-
-// import AddTodoForm from "./AddTodoForm";
 import AddTodoForm from "./components/AddTodoForm";
-
 import TodoListItem from "./components/TodoListItem";
 import "./App.css";
 import { jsx } from "react/jsx-runtime";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
 
 function getTodoListDefaultState() {
   const savedTodoListString = window.localStorage.getItem("savedTodoList");
@@ -29,7 +26,15 @@ function useSemiPersistentState() {
         throw new Error(`Network response was not ok: ${response.status}`);
       }
       const data = await response.json();
-      setTodoList(data);
+
+      // Call the sort method on data.records
+      data.records.sort((objectA, objectB) => {
+        if (objectA.Title < objectB.Title) return -1; // Title A is less than Title B
+        if (objectA.Title > objectB.Title) return 1; // Title A is greater than Title B
+        return 0; // Titles are the same
+      });
+
+      setTodoList(data); // Set the sorted data to the state
     } catch (error) {
       console.error("Error fetching data:", error.message); // Log the error's message
     } finally {
@@ -70,6 +75,10 @@ function App() {
           element={
             <>
               <h1>Todo List</h1>
+              <Link to="/home" className="home" element={<Home />}>
+                Home
+              </Link>
+
               <AddTodoForm onAddTodo={addTodo} />
               <hr />
               <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
