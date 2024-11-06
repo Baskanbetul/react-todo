@@ -27,13 +27,6 @@ function useSemiPersistentState() {
       }
       const data = await response.json();
 
-      // Call the sort method on data.records
-      data.records.sort((objectA, objectB) => {
-        if (objectA.Title < objectB.Title) return -1; // Title A is less than Title B
-        if (objectA.Title > objectB.Title) return 1; // Title A is greater than Title B
-        return 0; // Titles are the same
-      });
-
       setTodoList(data); // Set the sorted data to the state
     } catch (error) {
       console.error("Error fetching data:", error.message); // Log the error's message
@@ -47,10 +40,13 @@ function useSemiPersistentState() {
   }, []); // Empty dependency array to run only once
 
   useEffect(() => {
-    console.log("todoList has changed");
-    console.log(todoList);
     window.localStorage.setItem("savedTodoList", JSON.stringify(todoList));
   }, [todoList]); //Define a useEffect React ve todoListi oraya yazdik o dependency oluyor
+  todoList.sort((objectA, objectB) => {
+    if (objectA.title < objectB.title) return -1; // Title A is less than Title B
+    if (objectA.title > objectB.title) return 1; // Title A is greater than Title B
+    return 0; // Titles are the same
+  });
 
   return [todoList, setTodoList];
 }
@@ -70,21 +66,19 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-          path="/"
+          path="/todolist"
           element={
             <>
               <h1>Todo List</h1>
-              <Link to="/home" className="home" element={<Home />}>
-                Home
-              </Link>
-
               <AddTodoForm onAddTodo={addTodo} />
               <hr />
               <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
             </>
           }
         />
+
         <Route
           path="/new"
           element={

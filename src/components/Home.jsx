@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
       <h2>Welcome to the Home Page</h2>
-      <Link to="/">Back to Todo List</Link> {/* Link to navigate back */}
+      <Link to="/todolist">Back to Todo List</Link>{" "}
     </div>
   );
 };

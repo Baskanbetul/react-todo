@@ -2,12 +2,6 @@ import React from "react";
 import TodoListItem from "./TodoListItem";
 import PropTypes from "prop-types"; // Import PropTypes
 
-// const todoList = [
-//   { title: "Go shopping", id: "1" },
-//   { title: "Finish cleaning", id: "2" },
-//   { title: "Go to gym", id: "3" },
-// ];
-
 function TodoList({ todoList, onRemoveTodo }) {
   return (
     <ul>
@@ -20,9 +14,6 @@ function TodoList({ todoList, onRemoveTodo }) {
             onRemoveTodo={onRemoveTodo}
           />
         );
-        /* <li key={item.objectID}>
-            <span>{item.title}</span>
-          </li> */
       })}
     </ul>
   );

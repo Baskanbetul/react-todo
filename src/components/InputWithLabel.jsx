@@ -5,7 +5,6 @@ function InputWithLabel({ id, value, onInputChange, placeholder, children }) {
   const inputRef = useRef();
 
   useEffect(() => {
-    // Example of using the ref to focus the input when the component mounts
     inputRef.current.focus();
   });
 
